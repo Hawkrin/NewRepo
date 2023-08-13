@@ -11,6 +11,7 @@ using WpfTest.View.CustomControls;
 using System.Diagnostics.Metrics;
 using WpfTest.Objects;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 public class Snake {
     public TranslateTransform snakeTransformation { get; } = new TranslateTransform();
@@ -27,40 +28,11 @@ public class Snake {
         snakeSegment.CenterX = initialX;
         snakeSegment.CenterY = initialY;
     }
+    public void init_snake() {
+        snakeTransformation.X = snakeSegment.CenterX;
+        snakeTransformation.Y = snakeSegment.CenterY;
 
-    private void Snake_Position() {
-        double snakeHeadLeft = snakeTransformation.X;
-        double snakeHeadTop = snakeTransformation.Y;
-        double fruitLeft = fruit.fruitTransformation.X;
-        double fruitTop = fruit.fruitTransformation.Y;
-
-        if (snakeHeadLeft < 0 || snakeHeadLeft > 395 || snakeHeadTop < 0 || snakeHeadTop > 385) { gameBoard.OnCollisionDetected(); }
-
-        if (Math.Abs(snakeHeadLeft - fruitLeft) <= collisionThreshold && Math.Abs(snakeHeadTop - fruitTop) <= collisionThreshold) {
-            fruit.Fruit_Spawner();
-            gameBoard?.ScoreIncrementedHandler(this, EventArgs.Empty);
-            AddSnakeSegment(snakeHeadLeft, snakeHeadTop);
-        }
-    }
-
-    private void UpdateSnakeSegments(double prevHeadX, double prevHeadY) {
-        double prevSegmentX = prevHeadX;
-        double prevSegmentY = prevHeadY;
-
-        foreach (var segment in snakeSegment.snakeBody) {
-            double tempX = segment.PrevX; // Store the previous position
-            double tempY = segment.PrevY;
-            segment.PrevX = segment.X; // Update previous position
-            segment.PrevY = segment.Y;
-            segment.X = prevSegmentX;   // Update segment position
-            segment.Y = prevSegmentY;
-
-            prevSegmentX = tempX;
-            prevSegmentY = tempY;
-
-            Canvas.SetLeft(segment.UIElement, segment.X);
-            Canvas.SetTop(segment.UIElement, segment.Y);
-        }
+        Snake_Spawner();
     }
 
     public void Snake_Movement(object sender, KeyEventArgs e) {
@@ -83,41 +55,34 @@ public class Snake {
                     snakeTransformation.Y += MOVEMENT_SPEED;
                     break;
             }
-            UpdateSnakeSegments(prevHeadX, prevHeadY); // Update the positions of snake segments
+            snakeSegment.Update_SnakeSegments(prevHeadX, prevHeadY); // Update the positions of snake segments
         }
 
         Snake_Position();
     }
 
-    private void AddSnakeSegment(double x, double y) {
-        Ellipse ellipse = new Ellipse {
-            Width = 10,
-            Height = 10,
-            Fill = Brushes.Green,
-        };
+    private void Snake_Position() {
+        double snakeHeadLeft = snakeTransformation.X;
+        double snakeHeadTop = snakeTransformation.Y;
+        double fruitLeft = fruit.fruitTransformation.X;
+        double fruitTop = fruit.fruitTransformation.Y;
 
-        SnakeSegment? lastSegment = snakeSegment.snakeBody.Last?.Value;
-        if (lastSegment != null) {
+        Debug.WriteLine(snakeTransformation.X + " " + snakeTransformation.Y);
+        Debug.WriteLine(fruit.fruitTransformation.X + " " + fruit.fruitTransformation.Y);
 
-            x = lastSegment.PrevX;
-            y = lastSegment.PrevY;
+        if (snakeHeadLeft < 0 || snakeHeadLeft > 395 || snakeHeadTop < 0 || snakeHeadTop > 385) { gameBoard.OnCollisionDetected(); }
+
+        if (Math.Abs(snakeHeadLeft - fruitLeft) <= collisionThreshold && Math.Abs(snakeHeadTop - fruitTop) <= collisionThreshold) {
+            Debug.WriteLine("HEYU");
+            fruit.Fruit_Spawner();
+            gameBoard?.ScoreIncrementedHandler(this, EventArgs.Empty);
+            snakeSegment.Add_SnakeSegment(snakeHeadLeft, snakeHeadTop);
         }
-
-        SnakeSegment segment = new SnakeSegment(gameBoard) {
-            UIElement = ellipse,
-            X = x,
-            Y = y,
-            PrevX = x,
-            PrevY = y
-        };
-
-        snakeSegment.snakeBody.AddLast(segment);
-        gameBoard?.SnakeCanvas.Children.Add(ellipse);
     }
 
-    private void SnakeSpawner() {
+    private void Snake_Spawner() {
 
-        int radius = 10;
+        int radius = 20;
         SolidColorBrush fillBrush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(50, 205, 50));
 
         Ellipse snake = new Ellipse {
@@ -128,16 +93,7 @@ public class Snake {
 
         gameBoard?.SnakeCanvas.Children.Add(snake); //spawns the fruit
         snake.RenderTransform = snakeTransformation;
-
     }
-
-    public void init_snake() {
-        snakeTransformation.X = snakeSegment.CenterX;
-        snakeTransformation.Y = snakeSegment.CenterY;
-
-        SnakeSpawner();
-    }
-
 }
 
 

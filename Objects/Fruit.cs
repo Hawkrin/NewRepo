@@ -8,7 +8,7 @@ using System.Windows.Shapes;
 using WpfTest.View.CustomControls;
 
 namespace WpfTest.Objects {
-    internal class Fruit {
+    public class Fruit {
         public TranslateTransform fruitTransformation { get; } = new TranslateTransform();
         private GameBoard? gameBoard;
         public int canvasWidth;
@@ -22,7 +22,7 @@ namespace WpfTest.Objects {
 
             Random random = new Random();
 
-            int radius = 10;
+            int radius = 20;
             int maxX = Math.Max(canvasWidth - radius * 2, 0); // Ensure positive or zero value
             int maxY = Math.Max(canvasHeight - radius * 2, 0); // Ensure positive or zero value
 
