@@ -51,6 +51,7 @@ public class Snake {
         };
 
         ImageBehavior.SetAnimatedSource(snake, gifDictionary["right"]);
+
     }
     public void init_snake() {
         snakeTransformation.X = snakeSegment.CenterX;

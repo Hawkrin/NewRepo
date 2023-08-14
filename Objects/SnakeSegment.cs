@@ -37,7 +37,7 @@ namespace WpfTest.Objects {
                 segment.PrevY = segment.Y;
                 segment.X = prevSegmentX;   // Update segment position
                 segment.Y = prevSegmentY;
-
+                segment.UIElement.Visibility = Visibility.Visible;
                 prevSegmentX = tempX;
                 prevSegmentY = tempY;
 
@@ -51,6 +51,7 @@ namespace WpfTest.Objects {
                 Source = new BitmapImage(new Uri(SnakeSegmentPNGPaths.Values.ElementAt(imageIndex))),
                 Width = 20,
                 Height = 20,
+                Visibility = Visibility.Collapsed,
             };
 
             imageIndex = (imageIndex + 1) % SnakeSegmentPNGPaths.Count;
@@ -60,11 +61,12 @@ namespace WpfTest.Objects {
                 X = x,
                 Y = y,
                 PrevX = x,
-                PrevY = y
+                PrevY = y,
             };
 
             snakeBody.AddLast(segment);
             gameBoard?.SnakeCanvas.Children.Add(image);
+
         }
     }
 }

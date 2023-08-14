@@ -1,14 +1,7 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
-using System.Windows.Resources;
 using WpfTest.Objects;
 using WpfTest.Utils;
 
@@ -28,7 +21,7 @@ namespace WpfTest.View.CustomControls {
 
         public GameBoard() {
 
-            ImageProcessor dictionaryBuilder = new ImageProcessor();
+            ImageProcessor ImageProcessor = new ImageProcessor();
 
             InitializeComponent();
             SnakeCanvas.Loaded += SnakeCanvas_Loaded;
@@ -40,8 +33,8 @@ namespace WpfTest.View.CustomControls {
             double cellWidth = SnakeCanvas.Width / gridColumns;
             double cellHeight = SnakeCanvas.Height / gridRows;
 
-            fruit = new Fruit(canvasWidth, canvasHeight, SnakeCanvas, dictionaryBuilder.fruitPNGFile);
-            snake = new Snake(this, initialX, initialY, fruit, cellWidth, cellHeight, dictionaryBuilder.SnakeGifPaths, dictionaryBuilder.SnakeSegmentPNGPaths);
+            fruit = new Fruit(canvasWidth, canvasHeight, SnakeCanvas, ImageProcessor.fruitPNGFile);
+            snake = new Snake(this, initialX, initialY, fruit, cellWidth, cellHeight, ImageProcessor.SnakeGifPaths, ImageProcessor.SnakeSegmentPNGPaths);
 
             KeyDown += snake.Snake_Movement; //reads input from keyboard
             Focusable = true;
