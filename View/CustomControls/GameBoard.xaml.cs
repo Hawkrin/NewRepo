@@ -17,12 +17,12 @@ namespace WpfTest.View.CustomControls {
     public partial class GameBoard : UserControl {
         public bool snakeDied = false;
         private int counter;
-        ScoreScreen ScoreScreenInstance = new ScoreScreen();
         public event EventHandler? CollisionDetected;
         public event EventHandler? RestartButtonClicked;
         private readonly Snake? snake;
         private readonly Fruit? fruit;
-   
+        public SharedViewModel ViewModel { get; set; }
+
         int gridRows = 25;
         int gridColumns = 25;
 
@@ -54,9 +54,9 @@ namespace WpfTest.View.CustomControls {
             restartButton.Visibility = System.Windows.Visibility.Visible;
         }
 
-        public void ScoreIncrementedHandler(object sender, EventArgs e) {
+        public void Score_Incrementer() {
             counter = (counter + 1) % 10000;
-            ScoreScreenInstance.UpdateCounterText(counter);
+            ViewModel.Score = counter;
         }
 
         private void SnakeCanvas_Loaded(object sender, RoutedEventArgs e) {

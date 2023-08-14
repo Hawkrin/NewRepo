@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Resources\fruit.png" />
+    <None Remove="Resources\grass_background.png" />
     <None Remove="Resources\imgbin_snake-cartoon-screenshot-png %281%29.png" />
     <None Remove="Resources\output-onlinepngtools.png" />
     <None Remove="Resources\snake_body_1.png" />
@@ -20,6 +21,7 @@
     <None Remove="Resources\snake_head_right_down.gif" />
     <None Remove="Resources\snake_head_right_up.gif" />
     <None Remove="Resources\snake_head_window.gif" />
+    <None Remove="Resources\stone_wall.jpg" />
     <None Remove="Utils\uri.json" />
   </ItemGroup>
 
@@ -30,6 +32,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\fruit.png" />
+    <Resource Include="Resources\grass_background.png" />
     <Resource Include="Resources\imgbin_snake-cartoon-screenshot-png (1).png" />
     <Resource Include="Resources\output-onlinepngtools.png" />
     <Resource Include="Resources\snake_body_1.png" />
@@ -41,6 +44,7 @@
     <Resource Include="Resources\snake_head_right_down.gif" />
     <Resource Include="Resources\snake_head_right_up.gif" />
     <Resource Include="Resources\snake_head_window.gif" />
+    <Resource Include="Resources\stone_wall.jpg" />
     <Resource Include="Utils\uri.json" />
   </ItemGroup>
 

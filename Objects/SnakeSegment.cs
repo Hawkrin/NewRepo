@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Shapes;
 using WpfTest.View.CustomControls;
-using System.Drawing;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 namespace WpfTest.Objects {
     internal class SnakeSegment {
@@ -59,14 +53,7 @@ namespace WpfTest.Objects {
                 Height = 20,
             };
 
-            // Increment the image index for the next segment
             imageIndex = (imageIndex + 1) % SnakeSegmentPNGPaths.Count;
-
-            SnakeSegment? lastSegment = snakeBody.Last?.Value;
-            if (lastSegment != null) {
-                x = lastSegment.PrevX;
-                y = lastSegment.PrevY;
-            }
 
             SnakeSegment segment = new SnakeSegment(gameBoard, SnakeSegmentPNGPaths) {
                 UIElement = image,

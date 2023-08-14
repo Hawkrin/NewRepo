@@ -12,6 +12,6 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
         <TextBlock Text="Score: " Grid.Column="0" FontSize="20" FontWeight="Black" Foreground="White" />
-        <TextBlock x:Name="score" Text="0000" Grid.Column="1" FontSize="20" FontWeight="Black" Foreground="White" />
+        <TextBlock x:Name="score" Text="{Binding Score}" Grid.Column="1" FontSize="20" FontWeight="Black" Foreground="White" />
     </Grid>
 </UserControl>

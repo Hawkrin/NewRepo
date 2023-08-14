@@ -28,7 +28,6 @@ namespace WpfTest.Objects {
                 Height = 20,
             };
 
-
             fruitTransformation.X = Random_Numbers(canvasWidth);
             fruitTransformation.Y = Random_Numbers(canvasHeight);
             image.RenderTransform = fruitTransformation;

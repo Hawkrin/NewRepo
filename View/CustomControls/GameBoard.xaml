@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfTest.View.CustomControls"
+             xmlns:objects="clr-namespace:WpfTest.Objects"
              Height="400" Width="400">
-    <Grid Background="BlueViolet" Height="400" Width="396">
-        <Border BorderBrush="White" BorderThickness="3"/>
+    <UserControl.Resources>
+        <ImageBrush x:Key="WallImageBrush" ImageSource="pack://application:,,,/WpfTest;component/Resources/stone_wall.jpg"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource WallImageBrush}" Height="400" Width="396">
+        <Border BorderBrush="Purple" BorderThickness="10"></Border>
         <Canvas Name="SnakeCanvas" Height="400" Width="396" Margin="5"></Canvas>
         <Button Name="restartButton" Content="Restart" Height="20" Width="50"  Visibility="Hidden" Margin="170,217,170,163" Click="restartButton_Click"></Button>
     </Grid>

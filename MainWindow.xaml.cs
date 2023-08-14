@@ -1,22 +1,19 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.IO;
+﻿using System;
 using System.Windows;
-using System.Windows.Resources;
-using WpfTest.View.CustomControls;
+using WpfTest.View;
 
 namespace WpfTest {
 
     public partial class MainWindow : Window {
+        private SharedViewModel sharedViewModel;
         public MainWindow() {
             InitializeComponent();
+            sharedViewModel = new SharedViewModel();
+            DataContext = sharedViewModel;
+            gameBoard.ViewModel = sharedViewModel;
 
             gameBoard.RestartButtonClicked += GameBoard_RestartButtonClicked;
             gameBoard.Focus();
-
-
-
-
         }
 
         /// Eventlistener for RestartButtonClicked

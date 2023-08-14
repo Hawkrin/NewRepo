@@ -1,12 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows.Controls;
 
 namespace WpfTest.View.CustomControls {
     
-    public partial class ScoreScreen : UserControl, INotifyPropertyChanged {
-        public event PropertyChangedEventHandler? PropertyChanged;
+    public partial class ScoreScreen : UserControl {
         public delegate void ScoreIncrementedEventHandler(object sender, EventArgs e);
 
        
@@ -14,19 +11,7 @@ namespace WpfTest.View.CustomControls {
             InitializeComponent();
         }
 
-        public void UpdateCounterText(int value) {
-            string formattedValue = value.ToString("D4");
-            score.Text = formattedValue;
-            Debug.WriteLine(score.Text);
-            UpdateLayout();
-        }
-
-  
-
-
-
-
-
+      
 
     }
 }

@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Resources;
-using WpfTest.View.CustomControls;
 
 namespace WpfTest.Utils {
     internal class ImageProcessor {

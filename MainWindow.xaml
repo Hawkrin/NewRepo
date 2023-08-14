@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTest"
         xmlns:CustomControls="clr-namespace:WpfTest.View.CustomControls"
+        xmlns:ViewModel="clr-namespace:WpfTest.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="820">
+    <Window.DataContext>
+        <ViewModel:SharedViewModel />
+    </Window.DataContext>
     <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <CustomControls:Menu Grid.Column="0"/>
         <CustomControls:GameBoard x:Name="gameBoard" Grid.Column="1" CollisionDetected="GameBoard_CollisionDetected"/>
-        <CustomControls:ScoreScreen Grid.Column="2" DataContext="{Binding scoreScreenInstance}"/>
+        <CustomControls:ScoreScreen Grid.Column="2" />
         <TextBlock Grid.Column="1" Name="GameOver" Text="GAME OVER" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"></TextBlock>
 
     </Grid>

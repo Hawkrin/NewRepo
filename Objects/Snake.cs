@@ -83,7 +83,7 @@ public class Snake {
                     break;
                 case Key.Down:
                     snakeTransformation.Y += cellHeight;
-                    ImageBehavior.SetAnimatedSource(snake, gifDictionary[isRightGifActive ? "rightDown" : "leftUp"]);
+                    ImageBehavior.SetAnimatedSource(snake, gifDictionary[isRightGifActive ? "rightDown" : "leftDown"]);
                     break;
             }
             snakeSegment?.Update_SnakeSegments(prevHeadX, prevHeadY); // Update the positions of snake segments
@@ -101,7 +101,7 @@ public class Snake {
 
         if (Math.Abs(snakeHeadLeft - fruitLeft) <= collisionThreshold && Math.Abs(snakeHeadTop - fruitTop) <= collisionThreshold) {
             fruit.Fruit_Spawner();
-            gameBoard?.ScoreIncrementedHandler(this, EventArgs.Empty);
+            gameBoard?.Score_Incrementer();
             snakeSegment?.Add_SnakeSegment(snakeHeadLeft, snakeHeadTop);
         }
     }
