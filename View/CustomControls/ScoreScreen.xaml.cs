@@ -12,7 +12,6 @@ namespace WpfTest.View.CustomControls {
        
         public ScoreScreen() {
             InitializeComponent();
-            DataContext = this;
         }
 
         public void UpdateCounterText(int value) {

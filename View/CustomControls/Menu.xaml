@@ -12,11 +12,15 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-       
+
+
+
         <TextBlock Text="SNAKE 2.0" FontSize="20" FontWeight="Black" Foreground="White" Grid.Row="0"></TextBlock>
-        <!--<Button Content="Restart the Game" Height="20" Width="100"  Grid.Row="1"></Button>
-        <Button Content="Pause the Game" Height="20" Width="100"  Grid.Row="2"></Button>-->
-        
-            
+        <StackPanel Grid.Row="1">
+            <Button Content="Restart the Game" Height="20" Width="100" IsTabStop="False" Click="Button_Click"></Button>
+            <Button Content="Pause the Game" Height="20" Width="100" IsTabStop="False" Click="Button_Click_1"></Button>
+        </StackPanel>
+
+
     </Grid>
 </UserControl>

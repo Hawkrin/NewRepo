@@ -12,17 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
-namespace WpfTest.View.CustomControls
-{
-    /// <summary>
-    /// Interaction logic for Menu.xaml
-    /// </summary>
-    public partial class Menu : UserControl
-    {
+namespace WpfTest.View.CustomControls {
+  
+    public partial class Menu : UserControl {
+        GameBoard gameBoard;
+
+
         public Menu()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) {
+
         }
     }
 }

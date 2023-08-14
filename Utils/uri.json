@@ -1,0 +1,17 @@
+{
+  "snakeHead": {
+    "snakeHead_LEFT": "pack://application:,,,/WpfTest;component/Resources/snake_head.gif",
+    "snakeHead_RIGHT": "pack://application:,,,/WpfTest;component/Resources/snake_head_window.gif",
+    "snakeHead_LEFT_DOWN": "pack://application:,,,/WpfTest;component/Resources/snake_head_left_down.gif",
+    "snakeHead_RIGHT_DOWN": "pack://application:,,,/WpfTest;component/Resources/snake_head_right_down.gif",
+    "snakeHead_LEFT_UP": "pack://application:,,,/WpfTest;component/Resources/snake_head_left_up.gif",
+    "snakeHead_RIGHT_UP": "pack://application:,,,/WpfTest;component/Resources/snake_head_right_up.gif"
+  },
+  "snakeSegments": {
+    "snakeSegment_1": "pack://application:,,,/WpfTest;component/Resources/snake_body_1.png",
+    "snakeSegment_2": "pack://application:,,,/WpfTest;component/Resources/snake_body_2.png",
+    "snakeSegment_3": "pack://application:,,,/WpfTest;component/Resources/snake_body_3.png"
+
+  },
+  "fruit": "pack://application:,,,/WpfTest;component/Resources/fruit.png"
+}

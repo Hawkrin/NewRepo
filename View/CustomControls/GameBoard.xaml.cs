@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
+using System.Windows.Resources;
 using WpfTest.Objects;
+using WpfTest.Utils;
 
 namespace WpfTest.View.CustomControls {
 
@@ -17,16 +22,26 @@ namespace WpfTest.View.CustomControls {
         public event EventHandler? RestartButtonClicked;
         private readonly Snake? snake;
         private readonly Fruit? fruit;
+   
+        int gridRows = 25;
+        int gridColumns = 25;
 
         public GameBoard() {
+
+            ImageProcessor dictionaryBuilder = new ImageProcessor();
+
             InitializeComponent();
             SnakeCanvas.Loaded += SnakeCanvas_Loaded;
 
             double initialX = SnakeCanvas.Width / 2;
             double initialY = SnakeCanvas.Height / 2;
+            int canvasWidth = (int)SnakeCanvas.Width;
+            int canvasHeight = (int)SnakeCanvas.Height;
+            double cellWidth = SnakeCanvas.Width / gridColumns;
+            double cellHeight = SnakeCanvas.Height / gridRows;
 
-            snake = new Snake(this, initialX, initialY);
-            fruit = new Fruit(this);
+            fruit = new Fruit(canvasWidth, canvasHeight, SnakeCanvas, dictionaryBuilder.fruitPNGFile);
+            snake = new Snake(this, initialX, initialY, fruit, cellWidth, cellHeight, dictionaryBuilder.SnakeGifPaths, dictionaryBuilder.SnakeSegmentPNGPaths);
 
             KeyDown += snake.Snake_Movement; //reads input from keyboard
             Focusable = true;
@@ -45,11 +60,8 @@ namespace WpfTest.View.CustomControls {
         }
 
         private void SnakeCanvas_Loaded(object sender, RoutedEventArgs e) {
-            fruit.canvasWidth = (int)SnakeCanvas.ActualWidth;
-            fruit.canvasHeight = (int)SnakeCanvas.ActualHeight;
-
-            snake.init_snake();
-            fruit.Fruit_Spawner();
+            snake?.init_snake();
+            fruit?.Fruit_Spawner();
         }
 
         private void restartButton_Click(object sender, RoutedEventArgs e) {
@@ -64,6 +76,3 @@ namespace WpfTest.View.CustomControls {
         }
     }
 }
-
-
-

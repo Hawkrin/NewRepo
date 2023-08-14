@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <CustomControls:Menu Grid.Column="0"/>
         <CustomControls:GameBoard x:Name="gameBoard" Grid.Column="1" CollisionDetected="GameBoard_CollisionDetected"/>
-        <CustomControls:ScoreScreen Grid.Column="2"/>
+        <CustomControls:ScoreScreen Grid.Column="2" DataContext="{Binding scoreScreenInstance}"/>
         <TextBlock Grid.Column="1" Name="GameOver" Text="GAME OVER" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Collapsed"></TextBlock>
 
     </Grid>
