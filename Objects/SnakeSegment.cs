@@ -13,7 +13,7 @@ namespace WpfTest.Objects {
         private int imageIndex = 0;
         Dictionary<string, string> SnakeSegmentPNGPaths;
 
-        public UIElement? UIElement { get; set; } // Add this property
+        public UIElement? UIElement { get; set; } 
         public double X { get; set; }
         public double Y { get; set; }
         public double PrevX { get; set; } // Store the previous X position
@@ -47,14 +47,7 @@ namespace WpfTest.Objects {
         }
 
         public void Add_SnakeSegment(double x, double y) {
-            Image image = new Image {
-                Source = new BitmapImage(new Uri(SnakeSegmentPNGPaths.Values.ElementAt(imageIndex))),
-                Width = 20,
-                Height = 20,
-                Visibility = Visibility.Collapsed,
-            };
-
-            imageIndex = (imageIndex + 1) % SnakeSegmentPNGPaths.Count;
+            Image image = Create_SnakeSegment();
 
             SnakeSegment segment = new SnakeSegment(gameBoard, SnakeSegmentPNGPaths) {
                 UIElement = image,
@@ -67,6 +60,18 @@ namespace WpfTest.Objects {
             snakeBody.AddLast(segment);
             gameBoard?.SnakeCanvas.Children.Add(image);
 
+        }
+
+        private Image Create_SnakeSegment() {
+            Image image = new Image {
+                Source = new BitmapImage(new Uri(SnakeSegmentPNGPaths.Values.ElementAt(imageIndex))),
+                Width = 20,
+                Height = 20,
+                Visibility = Visibility.Collapsed,
+            };
+
+            imageIndex = (imageIndex + 1) % SnakeSegmentPNGPaths.Count;
+            return image;
         }
     }
 }

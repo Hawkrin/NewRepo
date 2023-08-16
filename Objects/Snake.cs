@@ -11,7 +11,6 @@ using WpfAnimatedGif;
 
 public class Snake {
     public TranslateTransform snakeTransformation { get; } = new TranslateTransform();
-    private int collisionThreshold = 15; // Adjust the accuracy of the fruits to be eaten
     private GameBoard? gameBoard;
     private SnakeSegment? snakeSegment;
     private Fruit? fruit;
@@ -20,43 +19,23 @@ public class Snake {
     private bool isRightGifActive = true;
     private double cellWidth;
     private double cellHeight;
+    Dictionary<string, string> SnakeGifPaths;
 
-    public Snake(
-        GameBoard gameBoard, 
-        double initialX, double initialY, Fruit fruit, double cellWidth, double cellHeight, 
-        Dictionary<string, string> SnakeGifPaths, 
-        Dictionary<string, string> SnakeSegmentPNGPaths) {
+    public Snake(GameBoard gameBoard, double initialX, double initialY, Fruit fruit, double cellWidth, double cellHeight, Dictionary<string, string> SnakeGifPaths, Dictionary<string, string> SnakeSegmentPNGPaths) {
 
         this.gameBoard = gameBoard;
-       
-        snakeSegment = new SnakeSegment(gameBoard, SnakeSegmentPNGPaths);
-        snakeSegment.CenterX = initialX;
-        snakeSegment.CenterY = initialY;
+        this.SnakeGifPaths = SnakeGifPaths;
         this.fruit = fruit;
         this.cellWidth = cellWidth;
         this.cellHeight = cellHeight;
-        
-        foreach (var entry in SnakeGifPaths) {
-            var gifImage = new BitmapImage();
-            gifImage.BeginInit();
-            gifImage.UriSource = new Uri(entry.Value);
-            gifImage.EndInit();
-            gifDictionary.Add(entry.Key, gifImage);
-        }
-       
 
-        snake = new Image {
-            Width = 20,
-            Height = 20,
-        };
-
-        ImageBehavior.SetAnimatedSource(snake, gifDictionary["right"]);
-
+        snakeSegment = new SnakeSegment(gameBoard, SnakeSegmentPNGPaths);
+        snakeTransformation.X = initialX;
+        snakeTransformation.Y = initialY;
     }
     public void init_snake() {
-        snakeTransformation.X = snakeSegment.CenterX;
-        snakeTransformation.Y = snakeSegment.CenterY;
-
+      
+        Prepare_Snake_Image();
         Snake_Spawner();
         fruit?.Fruit_Spawner();
     }
@@ -92,11 +71,29 @@ public class Snake {
         Snake_Collision();
     }
 
+    private void Prepare_Snake_Image() {
+        foreach (var entry in SnakeGifPaths) {
+            var gifImage = new BitmapImage();
+            gifImage.BeginInit();
+            gifImage.UriSource = new Uri(entry.Value);
+            gifImage.EndInit();
+            gifDictionary.Add(entry.Key, gifImage);
+        }
+
+        snake = new Image {
+            Width = 20,
+            Height = 20,
+        };
+
+        ImageBehavior.SetAnimatedSource(snake, gifDictionary["right"]);
+    }
+
     private void Snake_Collision() {
         double snakeHeadLeft = snakeTransformation.X;
         double snakeHeadTop = snakeTransformation.Y;
         double fruitLeft = fruit.fruitTransformation.X;
         double fruitTop = fruit.fruitTransformation.Y;
+        int collisionThreshold = 15;
 
         if (snakeHeadLeft < 0 || snakeHeadLeft > 395 || snakeHeadTop < 0 || snakeHeadTop > 385) { gameBoard?.OnCollisionDetected(); }
 
