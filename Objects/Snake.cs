@@ -15,7 +15,7 @@ public class Snake {
     private SnakeSegment? snakeSegment;
     private Fruit? fruit;
     private Dictionary<string, BitmapImage> gifDictionary = new Dictionary<string, BitmapImage>();
-    private Image snake;
+    private Image? snake;
     private bool isRightGifActive = true;
     private double cellWidth;
     private double cellHeight;

@@ -7,16 +7,16 @@ using System.Windows.Resources;
 
 namespace WpfTest.Utils {
     internal class ImageProcessor {
-        private string? leftSnakeGifPath;
-        private string? rightSnakeGifPath;
-        private string? leftUpSnakeGifPath;
-        private string? rightUpSnakeGifPath;
-        private string? leftDownSnakeGifPath;
-        private string? rightDownSnakeGifPath;
-        private string? fruitPNGPath;
-        private string? snakeSegemnt1PNGPath;
-        private string? snakeSegemnt2PNGPath;
-        private string? snakeSegemnt3PNGPath;
+        private string? leftSnakeGifPath = "";
+        private string? rightSnakeGifPath = "";
+        private string? leftUpSnakeGifPath = "";
+        private string? rightUpSnakeGifPath = "";
+        private string? leftDownSnakeGifPath = "";
+        private string? rightDownSnakeGifPath = "";
+        private string? fruitPNGPath = "";
+        private string? snakeSegemnt1PNGPath = "";
+        private string? snakeSegemnt2PNGPath = "";
+        private string? snakeSegemnt3PNGPath = "";
         public Dictionary<string, string> SnakeGifPaths { get; private set; }
         public Dictionary<string, string> SnakeSegmentPNGPaths { get; private set; }
         public string? fruitPNGFile {get; private set;}

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WpfTest.View {
     public class SharedViewModel : INotifyPropertyChanged {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         private int _score;
  
 

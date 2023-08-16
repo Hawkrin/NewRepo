@@ -48,4 +48,6 @@
     <Resource Include="Utils\uri.json" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>

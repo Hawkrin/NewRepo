@@ -14,7 +14,7 @@ namespace WpfTest.View.CustomControls {
         public event EventHandler? RestartButtonClicked;
         private readonly Snake? snake;
         private readonly Fruit? fruit;
-        public SharedViewModel ViewModel { get; set; }
+        public SharedViewModel? ViewModel { get; set; }
 
         int gridRows = 25;
         int gridColumns = 25;

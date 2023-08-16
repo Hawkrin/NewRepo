@@ -17,7 +17,7 @@ namespace WpfTest {
         }
 
         /// Eventlistener for RestartButtonClicked
-        private void GameBoard_RestartButtonClicked(object sender, EventArgs e) {
+        private void GameBoard_RestartButtonClicked(object? sender, EventArgs e) {
             GameOver.Visibility = Visibility.Collapsed;
         }
 
